@@ -7,8 +7,10 @@ project/target
 target
 tmp
 dist
+test-result
 build
 *.iml
 *.ipr
 *.iws
 *~
+*.lock
