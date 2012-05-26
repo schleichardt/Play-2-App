@@ -4,6 +4,7 @@
 # IntelliJ IDEA
 
 * use the sbt console with the command `run` to start the play server
+* after renaming or moving a controller class the routes have to be adjusted manually and the task `clean` must be called
 
 # Typical mistakes and errors
 
