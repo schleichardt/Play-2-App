@@ -14,3 +14,6 @@
 <pre>    org.openqa.selenium.firefox.NotConnectedException: Unable to connect to host 127.0.0.1 on port 7055 after 45000 ms. Firefox console output:
     *** LOG addons.xpi: startup
     *** LOG addons.xpi: Ignoring file entry whose name is not a valid add-on ID: [...]</pre>
+
+* ebean errors: Scala seems not to work well with ebean: https://groups.google.com/forum/?fromgroups#!topic/play-framework/WziP0HqjN4Y
+* `Error with [models.ACLASS] It has not been enhanced but it's superClass [class play.db.ebean.Model] is? (You are not allowed to mix enhancement in a single inheritance hierarchy)` => mostly forgotten: build.scala: `val main = PlayProject(...etc...).settings(ebeanEnabled := true)`

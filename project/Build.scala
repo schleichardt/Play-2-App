@@ -12,6 +12,10 @@ object ApplicationBuild extends Build {
 
     val secureModule = Project("secure", file("modules/secure"))
 
-    val main = PlayProject(appName, appVersion, appDependencies, mainLang = SCALA).dependsOn(secureModule)
+    val main = PlayProject(appName, appVersion, appDependencies, mainLang = SCALA).dependsOn(secureModule).settings(
+        ebeanEnabled := true
+    )
+
+
 
 }
