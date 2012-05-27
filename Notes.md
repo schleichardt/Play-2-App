@@ -25,3 +25,5 @@
 * `Test CLass.method failed: java.sql.SQLException: Attempting to obtain a connection from a pool that has already been shutdown. ` => forgot `running(fakeApplication(inMemoryDatabase()), new Runnable() { [...]`
 * IDEA does not find dependency, run in SBT reload, compile, idea
 * don't include Google Guava Lib with SBT, it is already there with version 10.0 and extra Guavas JARs causes tests to crash
+* Selenium tests: don't extend FluentTest, it does not work with play's `running(testServer(3333), HTMLUNIT, new F.Callback<TestBrowser>()`
+`render(play.api.data.Form<models.User>) in views.html.index cannot be applied to (play.data.Form<models.User>)`, maybe in Build.scala set mainLanguage from SCALA to JAVA
