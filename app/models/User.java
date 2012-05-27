@@ -1,10 +1,7 @@
 package models;
 
-import java.util.*;
 import javax.persistence.*;
 
-import javax.validation.Constraint;
-import org.apache.commons.codec.net.BCodec;
 import org.apache.commons.lang.StringUtils;
 import play.db.ebean.*;
 import play.data.validation.*;
@@ -41,15 +38,12 @@ public class User extends Model {
     public static Finder<Long,User> find = new Finder<Long,User>(Long.class, User.class);
 
     public void setPassword(final String password) {
-        hashedPassword = hashPassword(password);
+        hashedPassword = BCrypt.hashpw(password, passwordSalt);
     }
 
     public boolean hasPassword(final String password) {
-        final String inputHashed = hashPassword(password);
+        final String inputHashed = BCrypt.hashpw(password, passwordSalt);
         return StringUtils.equals(inputHashed, hashedPassword);
     }
 
-    private String hashPassword(final String password){
-        return BCrypt.hashpw(password, passwordSalt);
-    }
 }

@@ -19,12 +19,7 @@ public class InitialDataTest {
                 final int initialUserNumber = User.find.findRowCount();
                 assertThat(initialUserNumber).isEqualTo(0);
 
-                @SuppressWarnings("unchecked")
-                Map<String, List<Object>> tableMap = (Map<String, List<Object>>) Yaml.load("initial-data.yml");//yaml must be in conf folder?
-
-                for (Map.Entry<String, List<Object>> tableEntry : tableMap.entrySet()) {
-                    Ebean.save(tableEntry.getValue());
-                }
+                Fixtures.loadAll();
 
                 final int fixturesUserNumber = User.find.findRowCount();
                 assertThat(fixturesUserNumber).isEqualTo(1);
