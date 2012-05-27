@@ -10,7 +10,7 @@ import org.junit.Test;
 
 public class UserPersistenceTest {
     @Test
-    public void findById() {
+    public void persistAndFind() {
         running(fakeApplication(inMemoryDatabase()), new Runnable() {
             public void run() {
                 assertThat(User.find.all().size()).isEqualTo(0).overridingErrorMessage("no users should be persisted");

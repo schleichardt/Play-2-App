@@ -9,6 +9,7 @@
 
 * use the sbt console with the command `run` to start the play server
 * after renaming or moving a controller class the routes have to be adjusted manually and the task `clean` must be called
+* external dependencies have to be configured manually?
 
 # Typical mistakes and errors
 
@@ -22,3 +23,5 @@
 * ebean errors: Scala seems not to work well with ebean: https://groups.google.com/forum/?fromgroups#!topic/play-framework/WziP0HqjN4Y
 * `Error with [models.ACLASS] It has not been enhanced but it's superClass [class play.db.ebean.Model] is? (You are not allowed to mix enhancement in a single inheritance hierarchy)` => mostly forgotten: build.scala: `val main = PlayProject(...etc...).settings(ebeanEnabled := true)`
 * `Test CLass.method failed: java.sql.SQLException: Attempting to obtain a connection from a pool that has already been shutdown. ` => forgot `running(fakeApplication(inMemoryDatabase()), new Runnable() { [...]`
+* IDEA does not find dependency, run in SBT reload, compile, idea
+* don't include Google Guava Lib with SBT, it is already there with version 10.0 and extra Guavas JARs causes tests to crash

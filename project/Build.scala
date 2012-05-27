@@ -8,8 +8,8 @@ object ApplicationBuild extends Build {
     val appVersion      = "0.2-SNAPSHOT"
 
     val appDependencies = Seq(
-        "org.apache.commons" % "commons-lang3" % "3.1",
-        "com.google.guava" % "guava" % "12.0"
+        "org.springframework.security" % "spring-security-core" % "3.1.0.RELEASE",
+        "org.springframework.security" % "spring-security-crypto" % "3.1.0.RELEASE"
     )
 
     val secureModule = Project("secure", file("modules/secure"))
@@ -17,7 +17,4 @@ object ApplicationBuild extends Build {
     val main = PlayProject(appName, appVersion, appDependencies, mainLang = SCALA).dependsOn(secureModule).settings(
         ebeanEnabled := true
     )
-
-
-
 }
