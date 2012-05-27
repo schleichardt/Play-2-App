@@ -4,6 +4,10 @@ import static play.mvc.Http.Status.OK;
 import static play.mvc.Http.Status.UNAUTHORIZED;
 import static play.test.Helpers.callAction;
 import static play.test.Helpers.status;
+import static play.test.Helpers.fakeApplication;
+import static play.test.Helpers.inMemoryDatabase;
+import static play.test.Helpers.running;
+
 
 import java.util.HashMap;
 import java.util.Map;
@@ -18,16 +22,27 @@ public class SecureTest {
 
     @Test
     public void successfulLogin() {
-        Result result = login(CORRECT_USERNAME, CORRECT_PASSWORD);
-        final int responseCode = status(result);
-        assertThat(responseCode).isEqualTo(OK);//"is" does not work here
+        running(fakeApplication(inMemoryDatabase()), new Runnable() {
+            public void run() {
+                Fixtures.loadAll();
+                Result result = login(CORRECT_USERNAME, CORRECT_PASSWORD);
+                final int responseCode = status(result);
+                assertThat(responseCode).isEqualTo(OK);
+            }
+        });
     }
+
 
     @Test
     public void failingLogin() {
-        Result result = login(CORRECT_USERNAME, "not " + CORRECT_PASSWORD);
-        final int responseCode = status(result);
-        assertThat(responseCode).isEqualTo(UNAUTHORIZED);//"is" does not work here
+        running(fakeApplication(inMemoryDatabase()), new Runnable() {
+            public void run() {
+                Fixtures.loadAll();
+                Result result = login(CORRECT_USERNAME, "not " + CORRECT_PASSWORD);
+                final int responseCode = status(result);
+                assertThat(responseCode).isEqualTo(UNAUTHORIZED);
+            }
+        });
     }
 
     private Result login(String username, String password) {

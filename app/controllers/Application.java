@@ -1,8 +1,7 @@
 package controllers;
 
-import static info.schleichardt.play2.secure.Secure.credentialsCorrect;
-
 import forms.Login;
+import models.User;
 import play.mvc.Controller;
 import play.mvc.Result;
 import views.html.index;
@@ -19,5 +18,14 @@ public class Application extends Controller {
             result = ok();
         }
         return result;
+    }
+
+    private static boolean credentialsCorrect(final String userName, final String password) {
+        boolean correct = false;
+        final User user = User.find.where().eq("name", userName).findUnique();
+        if(user != null) {
+            correct = user.hasPassword(password);
+        }
+        return correct;
     }
 }

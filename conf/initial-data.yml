@@ -2,3 +2,4 @@ users:
 
     - !!models.User
         name: Michael
+        password: Play1Rules.

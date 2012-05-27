@@ -1,5 +1,7 @@
 package models;
 
+import static org.apache.commons.lang.StringUtils.isNotEmpty;
+
 import javax.persistence.*;
 
 import org.apache.commons.lang.StringUtils;
@@ -32,18 +34,33 @@ public class User extends Model {
 
     public User(final String name) {
         this.name = name;
-        passwordSalt = BCrypt.gensalt();
     }
 
-    public static Finder<Long,User> find = new Finder<Long,User>(Long.class, User.class);
-
     public void setPassword(final String password) {
+        if(passwordSalt == null) {
+            passwordSalt = BCrypt.gensalt();
+        }
         hashedPassword = BCrypt.hashpw(password, passwordSalt);
     }
 
     public boolean hasPassword(final String password) {
-        final String inputHashed = BCrypt.hashpw(password, passwordSalt);
-        return StringUtils.equals(inputHashed, hashedPassword);
+        boolean hasPassword = false;
+        if (isNotEmpty(password) && isNotEmpty(hashedPassword)) {
+            final String inputHashed = BCrypt.hashpw(password, passwordSalt);
+            hasPassword = inputHashed.equals(hashedPassword);
+        }
+        return hasPassword;
     }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "hashedPassword='" + hashedPassword + '\'' +
+                ", id=" + id +
+                ", name='" + name + '\'' +
+                ", passwordSalt='" + passwordSalt + '\'' +
+                '}';
+    }
+
+    public static Finder<Long,User> find = new Finder<Long,User>(Long.class, User.class);
 }
