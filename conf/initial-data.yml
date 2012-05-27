@@ -1,0 +1,4 @@
+users:
+
+    - !!models.User
+        name: Michael
