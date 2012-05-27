@@ -5,6 +5,10 @@
 
 * Model.Finder ... findRowCount() for count queries
 
+# Tests
+
+* fill database not globaly for tests, only for tests which needs it
+
 # IntelliJ IDEA
 
 * use the sbt console with the command `run` to start the play server
@@ -27,3 +31,4 @@
 * don't include Google Guava Lib with SBT, it is already there with version 10.0 and extra Guavas JARs causes tests to crash
 * Selenium tests: don't extend FluentTest, it does not work with play's `running(testServer(3333), HTMLUNIT, new F.Callback<TestBrowser>()`
 `render(play.api.data.Form<models.User>) in views.html.index cannot be applied to (play.data.Form<models.User>)`, maybe in Build.scala set mainLanguage from SCALA to JAVA
+* there are 3 states: isProd, isDev, isTest

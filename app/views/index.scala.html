@@ -1,7 +1,19 @@
-@(message: String)
+@(userForm: Form[User])
+
+@import helper.twitterBootstrap._
 
 @main("Welcome to Play 2.0") {
-    
-    empty
+
+    @helper.form(action = routes.Application.signIn()) {
+
+        @helper.inputText(userForm("userName"))
+
+        @helper.inputPassword(userForm("password"))
+
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <button class="btn">Cancel</button>
+        </div>
+    }
     
 }
