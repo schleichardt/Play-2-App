@@ -8,6 +8,8 @@ object ApplicationBuild extends Build {
     val appVersion      = "0.2-SNAPSHOT"
 
     val appDependencies = Seq(
+        "org.apache.commons" % "commons-lang3" % "3.1",
+        "com.google.guava" % "guava" % "12.0"
     )
 
     val secureModule = Project("secure", file("modules/secure"))
