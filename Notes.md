@@ -1,5 +1,6 @@
 # SBT
 * use `~test` in the play console to run the tests on every source code change
+* hot deployment does not work, `play2 clean reload compile run`
 
 # Ebean
 

@@ -1,8 +1,16 @@
-@(userForm: Form[User])
+@(userForm: Form[forms.Login])
 
 @import helper.twitterBootstrap._
+@import util._
 
 @main("Welcome to Play 2.0") {
+
+
+<h3>With autoForm util</h3>
+FormHelper(userForm, classOf[forms.Login], routes.Application.signIn())
+
+<h3>Manual coding</h3>
+
 
     @helper.form(action = routes.Application.signIn()) {
 

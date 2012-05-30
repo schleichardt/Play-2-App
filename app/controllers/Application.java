@@ -2,6 +2,7 @@ package controllers;
 
 import forms.Login;
 import models.User;
+import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
 import views.html.index;
@@ -9,14 +10,15 @@ import views.html.loggedIn;
 
 public class Application extends Controller {
     public static Result index() {
-        return ok(index.render(form(User.class)));
+        return ok(index.render(form(Login.class)));
     }
 
     public static Result signIn() {
-        final Login credentials = form(Login.class).bindFromRequest().get();
-        Result result = unauthorized(index.render(form(User.class)));
-        if (credentialsCorrect(credentials.userName, credentials.password)) {
-            result = ok(loggedIn.render(credentials.userName));
+        final Form<Login> loginForm = form(Login.class).bindFromRequest();
+        final Login login = loginForm.get();
+        Result result = unauthorized(index.render(loginForm));
+        if (credentialsCorrect(login.userName, login.password)) {
+            result = ok(loggedIn.render(login.userName));
         }
         return result;
     }
