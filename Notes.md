@@ -4,6 +4,7 @@
 # Ebean
 
 * Model.Finder ... findRowCount() for count queries
+* auto evolutions: in application.conf: `applyEvolutions.default=true` or start with `play start -DapplyEvolutions.default=true` (untested)
 
 # Tests
 
