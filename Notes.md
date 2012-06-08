@@ -7,6 +7,10 @@
 * Model.Finder ... findRowCount() for count queries
 * auto evolutions: in application.conf: `applyEvolutions.default=true` or start with `play start -DapplyEvolutions.default=true` (untested)
 
+# H2
+
+* login to in memory database: h2-browser in play console, a browser window opens, login with empty username and password 
+
 # Tests
 
 * fill database not globaly for tests, only for tests which needs it
