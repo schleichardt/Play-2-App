@@ -7,6 +7,7 @@ import play.mvc.Controller;
 import play.mvc.Result;
 import views.html.index;
 import views.html.loggedIn;
+import views.html.templateExample;
 
 public class Application extends Controller {
     public static Result index() {
@@ -21,6 +22,10 @@ public class Application extends Controller {
             result = ok(loggedIn.render(login.userName));
         }
         return result;
+    }
+
+    public static Result templateExamples() {
+        return  ok(templateExample.render(new User("template Hi")));
     }
 
     private static boolean credentialsCorrect(final String userName, final String password) {
