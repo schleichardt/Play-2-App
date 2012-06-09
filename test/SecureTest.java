@@ -11,38 +11,33 @@ import static play.test.Helpers.running;
 
 import java.util.HashMap;
 import java.util.Map;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import play.mvc.Result;
 import play.test.FakeRequest;
 
-public class SecureTest {
+public class SecureTest extends TestWithFakeApplication {
 
     public static final String CORRECT_USERNAME = "Michael";
     public static final String CORRECT_PASSWORD = "Play1Rules.";
 
-    @Test
-    public void successfulLogin() {
-        running(fakeApplication(inMemoryDatabase()), new Runnable() {
-            public void run() {
-                Fixtures.loadAll();
-                Result result = login(CORRECT_USERNAME, CORRECT_PASSWORD);
-                final int responseCode = status(result);
-                assertThat(responseCode).isEqualTo(OK);
-            }
-        });
+    @BeforeClass
+    public static void fixtures() {
+        Fixtures.loadAll();
     }
 
+    @Test
+    public void successfulLogin() {
+        Result result = login(CORRECT_USERNAME, CORRECT_PASSWORD);
+        final int responseCode = status(result);
+        assertThat(responseCode).isEqualTo(OK);
+    }
 
     @Test
     public void failingLogin() {
-        running(fakeApplication(inMemoryDatabase()), new Runnable() {
-            public void run() {
-                Fixtures.loadAll();
-                Result result = login(CORRECT_USERNAME, "not " + CORRECT_PASSWORD);
-                final int responseCode = status(result);
-                assertThat(responseCode).isEqualTo(UNAUTHORIZED);
-            }
-        });
+        Result result = login(CORRECT_USERNAME, "not " + CORRECT_PASSWORD);
+        final int responseCode = status(result);
+        assertThat(responseCode).isEqualTo(UNAUTHORIZED);
     }
 
     private Result login(String username, String password) {
