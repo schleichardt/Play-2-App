@@ -15,6 +15,10 @@
 
 * fill database not globaly for tests, only for tests which needs it
 
+# Localization
+
+* there no warnings if arguments missing for {0}, {1} etc.
+
 # IntelliJ IDEA
 
 * use the sbt console with the command `run` to start the play server
