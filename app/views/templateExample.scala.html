@@ -1,4 +1,4 @@
-@(user: User)
+@(user: User, tasks: List[Task])
 
 @user.name
 
@@ -20,3 +20,25 @@
 @Messages("bla", "foo", "bar")
 <br>
 @i("bla", "foo", "bar")
+
+<br>
+
+<ul>
+@tasks.map { task =>
+    <li>@views.html.tasks.item( task )</li>
+}
+</ul>
+
+<ul>
+    @for(task <- tasks) {
+        <li>@views.html.tasks.item( task )</li>
+    }
+</ul>
+
+<br >
+<ol>
+    <li>@if(true) { @user.name } else { "inherited" }</li>
+    <li>@if(true) { user.name } else { "inherited" }</li>
+    <li>@{if(true) { user.name } else { "inherited" }}</li>
+    <li>@(if(true) { user.name } else { "inherited" })</li>
+</ol>
