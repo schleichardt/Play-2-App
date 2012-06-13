@@ -8,6 +8,7 @@ create table user (
   name                      varchar(255),
   hashed_password           varchar(255),
   password_salt             varchar(255),
+  foo                       varchar(255),
   constraint pk_user primary key (id))
 ;
 

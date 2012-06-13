@@ -29,7 +29,7 @@ public class Application extends Controller {
     }
 
     public static Result templateExamples() {
-        return  ok(templateExample.render(new User("template Hi"), createTaskList()));
+        return  ok(templateExample.render(new User("template Hi"), null, null, createTaskList(), "bar", new String[] {"first", "second", "third"}));
     }
 
     private static List<Task> createTaskList() {

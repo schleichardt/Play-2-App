@@ -2,6 +2,9 @@
 
 @import util._
 
+@import helper._
+@implicitField = @{ FieldConstructor(twitterBootstrapInput.f) }
+
 @main("Welcome to Play 2.0") {
 
 
@@ -11,7 +14,7 @@ FormHelper(userForm, classOf[forms.Login], routes.Application.signIn())
 <h3>Manual coding</h3>
 
 
-    @helper.form(action = routes.Application.signIn()) {
+    @helper.form(action = routes.Application.signIn(), 'class -> "form-horizontal") {
 
         @helper.inputText(userForm("userName"))
 

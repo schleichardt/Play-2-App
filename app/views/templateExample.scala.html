@@ -1,44 +1,125 @@
-@(user: User, tasks: List[Task])
+@(user: User, maybeNullUser: User, maybeNull: String, tasks: List[Task], foo: String, arrayVar: Array[String])
 
-@user.name
+@main2("template tests", 'hello -> "hi", 'bla -> "foo") {
 
-<br>
+    @user.name
 
-@user.toString
+   <br>@user.getXyz
 
-<br>
 
-@{
-  val name = "fddssf"
-  val bla = "bla"
-  val foo = "foo"
-  name + foo.toUpperCase + bla
+<hr>
+
+@user.foo ## @user.foo()
+
+<hr>
+
+   <br>@user.compute(3)
+   <br>@{user.compute(3)}
+   <br>@{user.compute(3) + user.compute(1)}
+<br>@user.compute(3) + @user.compute(1)
+
+<br>@@user.name
+<br>@Some(maybeNull)
+<br>@maybeNull
+<br>@maybeNullUser
+<br>@Option("bar").getOrElse("Default")
+<br>@Option(maybeNull).getOrElse("Default")
+<br>sds
+<br>@Option(maybeNullUser).getOrElse(new User("anonymous")).name
+<br>@if(maybeNullUser == null) {"fool"} else {"dumb"}
+<br>@{if(maybeNullUser == null) {"fool"} else {"dumb"}}
+<br>@{if(maybeNullUser != null) {maybeNullUser.name} else {"<p>kein @@ benötigt</p>"}}
+<br>sds
+<br>@{"block"}
+<br>@{"block".toUpperCase}
+<br />@{new models.User("Yann").name}
+<br>sds
+<br>@{val fx = new User("FM"); fx.name}
+<br>sds
+<br>@{println("a line")}
+<br>sds
+<br>@if(foo=="bar"){ &lt;p&gt;direkt html2&lt;/p&gt;}
+<br>@arrayVar(0)
+<br>@tasks.zipWithIndex.map { a => <li>@a._2. @a._1</li>}
+<br>@tasks.zipWithIndex.map { a =>
+<li>@a._2. @a._1</li>
 }
 
-<br>
+    <br>
 
-@Messages("bla", "foo", "bar")
-<br>
-@i("bla", "foo", "bar")
+    @user.toString
 
-<br>
+    <br>
 
-<ul>
-@tasks.map { task =>
-    <li>@views.html.tasks.item( task )</li>
-}
-</ul>
+    @{
+      val name = "fddssf"
+      val bla = "bla"
+      val foo = "foo"
+      name + foo.toUpperCase + bla
+    }
 
-<ul>
-    @for(task <- tasks) {
+    <br>
+
+    @Messages("bla", "foo", "bar")
+    <br>
+    @i("bla", "foo", "bar")
+
+    <br>
+<h1>map</h1>
+    <ul>
+    @tasks.map { task =>
         <li>@views.html.tasks.item( task )</li>
     }
-</ul>
+    </ul>
 
-<br >
-<ol>
-    <li>@if(true) { @user.name } else { "inherited" }</li>
-    <li>@if(true) { user.name } else { "inherited" }</li>
-    <li>@{if(true) { user.name } else { "inherited" }}</li>
-    <li>@(if(true) { user.name } else { "inherited" })</li>
-</ol>
+    <ul>
+    @tasks.map { task =>
+        <li>@views.html.tasks.item( task )</li>
+    }
+    </ul>
+
+    <ul>
+        @for(task <- tasks) {
+            <li>@views.html.tasks.item( task )</li>
+        }
+    </ul>
+
+    <br >
+    <ol>
+        <li>@if(true) { @user.name } else { "inherited" }</li>
+        <li>@if(true) { user.name } else { "inherited" }</li>
+        <li>@{if(true) { user.name } else { "inherited" }}</li>
+        <li>@(if(true) { user.name } else { "inherited" })</li>
+    </ol>
+
+    <br>
+
+    <h2>Template Engine</h2>
+    Functions, show parmeter list and return type
+in java render, in scala apply possible#
+
+templates in REPL
+templates in tests
+    <h3>Print variable</h3>
+    <h3>Print variable null safe</h3>
+    <h3>Template inheritance</h3>
+    <h3>Tags</h3>
+    <h3>Actions, a</h3>
+    <h3>Internationalization</h3>
+    <h3>Comments</h3>
+    <h3>Code snippets</h3>
+    <h3>Implicit objects avaiblabe</h3>
+    <h3>Flash</h3>
+    <h3>Cache a template</h3>
+    <h3>If/else if/else</h3>
+    <h3>Errors, error css classes</h3>
+    <h3>Form function</h3>
+    <h3>Includes</h3>
+    <h3>JavaScript</h3>
+    <h3>Loops</h3>
+    <h3>Select</h3>
+    <h3>Raw data</h3>
+    <h3></h3>
+    <h3></h3>
+
+}

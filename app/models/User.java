@@ -32,8 +32,18 @@ public class User extends Model {
     private String hashedPassword;
     private String passwordSalt;
 
+
+    public String foo = "foo attribute";
+    public String foo() {
+        return "foo method";
+    }
+
     public User(final String name) {
         this.name = name;
+    }
+
+    public int compute(final int a) {
+        return a * 2;
     }
 
     public void setPassword(final String password) {
@@ -60,6 +70,10 @@ public class User extends Model {
                 ", name='" + name + '\'' +
                 ", passwordSalt='" + passwordSalt + '\'' +
                 '}';
+    }
+
+    public String getXyz() {
+        return "xyz called";
     }
 
     public static Finder<Long,User> find = new Finder<Long,User>(Long.class, User.class);
