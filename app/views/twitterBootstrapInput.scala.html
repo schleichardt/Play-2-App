@@ -1,13 +1,12 @@
 @(elements: helper.FieldElements)
-@* thanks to http://www.jamesfaeldon.com/2012/05/01/using-twitter-bootstrap-horizontal-forms-in-play-framework-2-0/ *@
+@* thanks to http://www.jamesfaeldon.com/2012/05/01/using-twitter-bootstrap-horizontal-forms-in-play-framework-2-0/
+improved version*@
 <div class="control-group @if(elements.hasErrors) {error}">
     <label class="control-label" for="@elements.id">@elements.label</label>
     <div class="controls">@elements.input
-        <p class="help-inline">@elements.infos.mkString(", ")
-
-            @if(elements.hasErrors) {
-        </p><p class="help-block">@elements.errors.mkString(", ")
-
-            }
-        </p></div>
+        @if(elements.hasErrors) {
+            <p class="help-inline">@elements.errors.mkString(", ")</p>
+        }
+        <p class="help-block">@elements.infos.mkString(", ")</p>
+        </div>
 </div>

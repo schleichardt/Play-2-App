@@ -20,10 +20,11 @@ public class Application extends Controller {
 
     public static Result signIn() {
         final Form<Login> loginForm = form(Login.class).bindFromRequest();
-        final Login login = loginForm.get();
         Result result = unauthorized(index.render(loginForm));
-        if (credentialsCorrect(login.userName, login.password)) {
-            result = ok(loggedIn.render(login.userName));
+        if(loginForm.hasErrors()) {
+            return badRequest(index.render(loginForm));
+        } else if (credentialsCorrect(loginForm.get().userName, loginForm.get().password)) {
+            result = ok(loggedIn.render(loginForm.get().userName));
         }
         return result;
     }
