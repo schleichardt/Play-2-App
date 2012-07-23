@@ -10,6 +10,7 @@ public class Global extends GlobalSettings {
         if (app.isDev()) {
             Fixtures.loadAll();
         }
+        Logger.info(app.configuration().getString("configuration.example"));
     }
 
     @Override
