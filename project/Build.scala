@@ -17,9 +17,7 @@ object ApplicationBuild extends Build {
     // tip from http://ronalleva.com/2012/04/25/jacoco-and-play.html#shutup
     lazy val s = Defaults.defaultSettings ++ Seq(jacoco.settings:_*)
 
-    val secureModule = Project("secure", file("modules/secure"))
-
-    val main = PlayProject(appName, appVersion, appDependencies, mainLang = JAVA, settings = s).dependsOn(secureModule).settings(
+    val main = PlayProject(appName, appVersion, appDependencies, mainLang = JAVA, settings = s).settings(
         templatesImport += "helper.twitterBootstrap._",
         ebeanEnabled := true,
         parallelExecution in jacoco.Config := false
