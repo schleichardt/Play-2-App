@@ -14,3 +14,5 @@ build
 *.iws
 *~
 *.lock
+out
+lib
