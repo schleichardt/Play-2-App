@@ -12,7 +12,7 @@ object ApplicationBuild extends Build {
         "org.springframework.security" % "spring-security-core" % "3.1.0.RELEASE",
         "org.springframework.security" % "spring-security-crypto" % "3.1.0.RELEASE",
         "commons-dbutils" % "commons-dbutils" % "1.4",
-        "org.slf4j" % "slf4j-api" % "1.6.1" from "http://repo1.maven.org/maven2/"
+        "org.hibernate" % "hibernate-validator" % "4.2.0.Final" intransitive() 
     )
 
     // tip from http://ronalleva.com/2012/04/25/jacoco-and-play.html#shutup
